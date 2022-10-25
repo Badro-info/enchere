@@ -33,7 +33,7 @@ public class Enchere {
 
     public static Connection defautConnect()
             throws ClassNotFoundException, SQLException {
-        return connectGeneralPostGres("localhost", 5439, "postgres", "postgres", "0000");
+        return connectGeneralPostGres("localhost", 5432, "postgres", "postgres", "pass");
     }
 public static void creeSchema(Connection con)
             throws SQLException {
@@ -96,24 +96,6 @@ public static void creeSchema(Connection con)
                         proposepar integer,
                         categorie integer
                     )
-                    """);
-             st.executeUpdate(
-                    """
-                    alter table fdbaime
-                        add constraint fk_fdbaime_u1
-                        foreign key (u1) references fdbutilisateur(id)
-                    """);
-            st.executeUpdate(
-                    """
-                    alter table fdbutilisateur
-                        add constraint fk_fdbutilisateur_role
-                        foreign key (role) references fdbrole(id)
-                    """);
-            st.executeUpdate(
-                    """
-                    alter table fdbaime
-                        add constraint fk_fdbaime_u2
-                        foreign key (u2) references fdbutilisateur(id)
                     """);
             // si j'arrive jusqu'ici, c'est que tout s'est bien passÃ©
             // je confirme (commit) la transaction
